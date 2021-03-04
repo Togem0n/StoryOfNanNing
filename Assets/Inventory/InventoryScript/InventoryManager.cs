@@ -50,10 +50,8 @@ public class InventoryManager : MonoBehaviour
         //然后此时在背包里生成slot存储该item 
    
         Slot newItem = Instantiate(instance.slotPrefab, instance.slotGrid.transform.position, Quaternion.identity);
-
         //由于Instantiate是在Grid底下，此时我们设置他的parent
         newItem.gameObject.transform.SetParent(instance.slotGrid.transform);
-
         newItem.slotItem = item;
         // newItem.slotImage是image，而Item.itemImage是一个sprite，所以前面要加.sprite获取它的sprite
         newItem.slotImage.sprite = item.itemImage;

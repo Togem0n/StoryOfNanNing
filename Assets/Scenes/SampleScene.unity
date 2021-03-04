@@ -385,7 +385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &418418538
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1359,8 +1359,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -91.8, y: -121.9}
-  m_SizeDelta: {x: 795.7368, y: 41.865997}
+  m_AnchoredPosition: {x: -51.32, y: -134.78}
+  m_SizeDelta: {x: 630.15234, y: 86.02192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1683590156
 MonoBehaviour:
@@ -1439,7 +1439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 162.4, y: -120.7}
+  m_AnchoredPosition: {x: 158.92, y: -129.9}
   m_SizeDelta: {x: 81.1, y: 38.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1751871064
@@ -1529,6 +1529,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1135405287480836560, guid: 36d36746e1d49b6448149bd66cd8241f,
+        type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1135405287480836561, guid: 36d36746e1d49b6448149bd66cd8241f,
         type: 3}
       propertyPath: m_Name
@@ -1633,7 +1638,7 @@ BoxCollider2D:
   m_Offset: {x: -0.0070672035, y: -0.17264223}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1, y: 2}
     newSize: {x: 0.16, y: 0.32}
     adaptiveTilingThreshold: 0.5

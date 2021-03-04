@@ -91,6 +91,7 @@ MonoBehaviour:
   slotItem: {fileID: 0}
   slotImage: {fileID: 4867059765643867638}
   slotNum: {fileID: 6619864133813936966}
+  slotInfo: 
   itemInSlot: {fileID: 317595385415924127}
 --- !u!1001 &3853973953753270904
 PrefabInstance:
@@ -126,12 +127,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5448241548781555466, guid: 191142df66b4df7448b9c2b38379aa51,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448241548781555466, guid: 191142df66b4df7448b9c2b38379aa51,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: -2545663096629875119}
     - target: {fileID: 5448241548781555466, guid: 191142df66b4df7448b9c2b38379aa51,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448241548781555466, guid: 191142df66b4df7448b9c2b38379aa51,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5448241548781555466, guid: 191142df66b4df7448b9c2b38379aa51,

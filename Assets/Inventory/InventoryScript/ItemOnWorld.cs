@@ -9,13 +9,23 @@ public class ItemOnWorld : MonoBehaviour
     public Item thisitem;
     public Inventory playerInventory;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !thisitem.canBePicked)
         {
             AddNewItem();
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.CompareTag("Player") && thisitem.canBePicked)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                AddNewItem();
+                Destroy(gameObject);
+            }
+        }
+
     }
 
     public void AddNewItem()
@@ -23,9 +33,9 @@ public class ItemOnWorld : MonoBehaviour
         if (!playerInventory.itemList.Contains(thisitem))
         {
             //playerInventory.itemList.Add(thisitem);
-            for(int i=0; i < playerInventory.itemList.Count; i++)
+            for (int i = 0; i < playerInventory.itemList.Count; i++)
             {
-                if(playerInventory.itemList[i] == null)
+                if (playerInventory.itemList[i] == null)
                 {
                     playerInventory.itemList[i] = thisitem;
                     break;

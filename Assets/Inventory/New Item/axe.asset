@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: axe
   m_EditorClassIdentifier: 
   itemName: axe
-  itemImage: {fileID: 21300024, guid: 03dd1ef6fb163214c9e1ac0242dab3ba, type: 3}
-  itemHeld: 1
-  itemInfo: a axe
-  equip: 1
+  itemSprite: {fileID: 21300024, guid: 03dd1ef6fb163214c9e1ac0242dab3ba, type: 3}
+  itemHeld: 12
+  canBeEquip: 0
+  canBePicked: 0
+  canBeEatan: 0
+  itemInfo: This is a axe

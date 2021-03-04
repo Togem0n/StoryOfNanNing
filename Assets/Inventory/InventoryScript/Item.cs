@@ -1,16 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-//该脚本用于生成Item的数据库
+
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/New Item")]
 public class Item : ScriptableObject
 {
     public string itemName;
-    public Sprite itemImage;
+    public Sprite itemSprite;
     public int itemHeld;
+
+
+    public bool canBeEquip;
+    public bool canBePicked;
+    public bool canBeEatan;
+
     [TextArea]
     public string itemInfo;
-
-    public bool equip;
 }

@@ -40,13 +40,13 @@ public class Slot : MonoBehaviour
 
     public void SetUpSlot(Item item)
     {
-        if(item == null)
+        if (item == null)
         {
             itemInSlot.SetActive(false);
             return;
         }
 
-        slotImage.sprite = item.itemImage;
+        slotImage.sprite = item.itemSprite;
         slotNum.text = item.itemHeld.ToString();
         slotInfo = item.itemInfo;
     }
