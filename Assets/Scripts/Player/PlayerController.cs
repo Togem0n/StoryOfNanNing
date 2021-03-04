@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour
     float horizontal;
     float vertical;
     Vector2 moveDirection = new Vector2(1, 0);
+
+    // MyBag
+    public GameObject myBag;
+    bool isOpen;
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -34,6 +38,8 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Move X", moveDirection.x);
         animator.SetFloat("Move Y", moveDirection.y);
         animator.SetFloat("Speed", move.magnitude);
+
+        openMyBag();
     }
 
     void FixedUpdate()
@@ -42,5 +48,14 @@ public class PlayerController : MonoBehaviour
         position.x = position.x + speed * horizontal * Time.deltaTime;
         position.y = position.y + speed * vertical * Time.deltaTime;
         transform.position = position;
+    }
+
+    void openMyBag()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            isOpen = !isOpen;
+            myBag.SetActive(isOpen);
+        }
     }
 }

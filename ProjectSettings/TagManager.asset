@@ -51,6 +51,6 @@ TagManager:
   - name: Ground3
     uniqueID: 180359971
     locked: 0
-  - name: Player
+  - name: Instance
     uniqueID: 1242175855
     locked: 0
