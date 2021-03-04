@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//该脚本用于生成Item的数据库
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/New Item")]
 public class Item : ScriptableObject
 {

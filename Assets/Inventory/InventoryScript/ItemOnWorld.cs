@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//该脚本挂在于世界上所有的item底下
+//底下有两个属性，一个是它的item，一个是它被拾取后要去的背包（逻辑有问题）
 public class ItemOnWorld : MonoBehaviour
 {
     public Item thisitem;
@@ -20,7 +22,15 @@ public class ItemOnWorld : MonoBehaviour
     {
         if (!playerInventory.itemList.Contains(thisitem))
         {
-            playerInventory.itemList.Add(thisitem);
+            //playerInventory.itemList.Add(thisitem);
+            for(int i=0; i < playerInventory.itemList.Count; i++)
+            {
+                if(playerInventory.itemList[i] == null)
+                {
+                    playerInventory.itemList[i] = thisitem;
+                    break;
+                }
+            }
         }
         else
         {

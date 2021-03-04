@@ -235,9 +235,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myBag: {fileID: 11400000, guid: fa8570028ed4d8e449a734cb71953843, type: 2}
   slotGrid: {fileID: 1578827512}
-  slotPrefab: {fileID: -2545663096629875119, guid: 01f735a3060f841c8bdbbaf3c5472d66,
+  emptySlot: {fileID: 6619864133452036140, guid: 01f735a3060f841c8bdbbaf3c5472d66,
     type: 3}
   itemInformation: {fileID: 1683590156}
+  slots: []
 --- !u!1 &387993874
 GameObject:
   m_ObjectHideFlags: 0
@@ -1276,7 +1277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1313,15 +1314,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 5
+    m_Left: 0
     m_Right: 0
-    m_Top: 5
+    m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 51, y: 51}
-  m_Spacing: {x: 16.6, y: 15.3}
+  m_CellSize: {x: 60, y: 60}
+  m_Spacing: {x: 7.4, y: 4.3}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &1683590154
@@ -1629,7 +1630,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.16557503}
+  m_Offset: {x: -0.0070672035, y: -0.17264223}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1640,5 +1641,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.66885}
+  m_Size: {x: 0.9858656, y: 1.6547155}
   m_EdgeRadius: 0
