@@ -25,6 +25,7 @@ using UnityEngine.EventSystems;
 //每个slot都有属于他的slot信息和那一个image和slotnum（有几个该item）
 public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public int slotID;//物品槽id
     public Item slotItem;
     public Image slotImage;
     public Text slotNum;
@@ -40,13 +41,13 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Cursor Entering " + name + " GameObject");
+        //Debug.Log("Cursor Entering " + name + " GameObject");
         Tooltips.showTooltips_Static(slotInfo);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("Cursor Exiting " + name + " GameObject");
+        //Debug.Log("Cursor Exiting " + name + " GameObject");
         Tooltips.hideTooltips_Static();
     }
 
