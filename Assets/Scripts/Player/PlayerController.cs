@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
         {
             isOpen = !isOpen;
             myBag.SetActive(isOpen);
+            Tooltips.hideTooltips_Static();
         }
     }
 }

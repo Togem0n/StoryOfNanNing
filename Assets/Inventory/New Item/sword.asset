@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: sword
   itemSprite: {fileID: 21300000, guid: 03dd1ef6fb163214c9e1ac0242dab3ba, type: 3}
-  itemHeld: 4
+  itemHeld: 1
   canBeEquip: 0
   canBePicked: 1
   canBeEatan: 0

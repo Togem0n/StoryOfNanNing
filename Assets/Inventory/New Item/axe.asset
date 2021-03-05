@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: axe
   itemSprite: {fileID: 21300024, guid: 03dd1ef6fb163214c9e1ac0242dab3ba, type: 3}
-  itemHeld: 12
+  itemHeld: 3
   canBeEquip: 0
   canBePicked: 0
   canBeEatan: 0
-  itemInfo: This is a axe
+  itemInfo: 'This is a axe
+
+    test
+
+    test
+
+    test'
