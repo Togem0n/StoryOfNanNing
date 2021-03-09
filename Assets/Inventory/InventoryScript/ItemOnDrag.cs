@@ -22,7 +22,7 @@ public class ItemOnDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = eventData.position;
-        Debug.Log(eventData.pointerCurrentRaycast);
+        //Debug.Log(eventData.pointerCurrentRaycast);
     }
 
     public void OnEndDrag(PointerEventData eventData)
