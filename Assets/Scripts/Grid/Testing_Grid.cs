@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 
-public class Testing : MonoBehaviour
+public class Testing_Grid : MonoBehaviour
 {
 
     private Grid grid;
