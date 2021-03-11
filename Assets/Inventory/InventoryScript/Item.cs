@@ -12,6 +12,8 @@ public class Item : ScriptableObject
     public bool canBeEquip;
     public bool canBePicked;
     public bool canBeEatan;
+    public bool isTool;
+    public bool inUse = false;
 
     [TextArea]
     public string itemInfo;

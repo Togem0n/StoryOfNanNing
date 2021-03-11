@@ -78,6 +78,7 @@ public class InventoryManager : MonoBehaviour
             instance.slots[i].GetComponent<Slot>().slotID = i;
 
             instance.slots[i].GetComponent<Slot>().SetUpSlot(instance.myBag.itemList[i]);
+
         }
     }
 }

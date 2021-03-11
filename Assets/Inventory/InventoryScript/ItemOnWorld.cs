@@ -7,13 +7,13 @@ using UnityEngine;
 public class ItemOnWorld : MonoBehaviour
 {
     public Item thisitem;
-    public Inventory playerInventory;
+    public Inventory myBag;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && !thisitem.canBePicked)
         {
-            AddNewItem();
+            MyBagAddNewItem();
             Destroy(gameObject);
         }
 
@@ -21,23 +21,23 @@ public class ItemOnWorld : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                AddNewItem();
+                MyBagAddNewItem();
                 Destroy(gameObject);
             }
         }
 
     }
 
-    public void AddNewItem()
+    public void MyBagAddNewItem()
     {
-        if (!playerInventory.itemList.Contains(thisitem))
+        if (!myBag.itemList.Contains(thisitem))
         {
             //playerInventory.itemList.Add(thisitem);
-            for (int i = 0; i < playerInventory.itemList.Count; i++)
+            for (int i = 0; i < myBag.itemList.Count; i++)
             {
-                if (playerInventory.itemList[i] == null)
+                if (myBag.itemList[i] == null)
                 {
-                    playerInventory.itemList[i] = thisitem;
+                    myBag.itemList[i] = thisitem;
                     break;
                 }
             }
