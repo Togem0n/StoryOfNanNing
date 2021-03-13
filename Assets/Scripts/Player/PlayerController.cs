@@ -12,13 +12,25 @@ public class PlayerController : MonoBehaviour
     float vertical;
     Vector2 moveDirection = new Vector2(1, 0);
 
-    // MyBag
-    public GameObject myBag;
-    bool isOpen;
+    private Inventory inventory;
+    [SerializeField] private UI_Inventory ui_Inventory; 
+
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        inventory = new Inventory();
+        ui_Inventory.SetInventory(inventory);
+
+        ItemWorld.SpawnItemWorld(new Vector3(20, 20), new Item { itemType = Item.ItemType.Sword, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-20, 20), new Item { itemType = Item.ItemType.Sword, amount = 1 });
+
+        ItemWorld.SpawnItemWorld(new Vector3(20, -20), new Item { itemType = Item.ItemType.Sword, amount = 1 });
+
+        ItemWorld.SpawnItemWorld(new Vector3(0, 20), new Item { itemType = Item.ItemType.Sword, amount = 1 });
+
+
     }
 
     // Update is called once per frame
@@ -39,7 +51,6 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Move Y", moveDirection.y);
         animator.SetFloat("Speed", move.magnitude);
 
-        openMyBag();
     }
 
     void FixedUpdate()
@@ -48,15 +59,5 @@ public class PlayerController : MonoBehaviour
         position.x = position.x + speed * horizontal * Time.deltaTime;
         position.y = position.y + speed * vertical * Time.deltaTime;
         transform.position = position;
-    }
-
-    void openMyBag()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            isOpen = !isOpen;
-            myBag.SetActive(isOpen);
-            Tooltips.hideTooltips_Static();
-        }
     }
 }
