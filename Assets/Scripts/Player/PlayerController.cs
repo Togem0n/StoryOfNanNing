@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
 
         ItemWorld.SpawnItemWorld(new Vector3(5, 18), new Item { itemType = Item.ItemType.Sword, amount = 1 });
 
+        ItemWorld.SpawnItemWorld(new Vector3(10, 21), new Item { itemType = Item.ItemType.Sword, amount = 1 });
+
+        ItemWorld.SpawnItemWorld(new Vector3(5, 21), new Item { itemType = Item.ItemType.Sword, amount = 1 });
+
 
     }
 

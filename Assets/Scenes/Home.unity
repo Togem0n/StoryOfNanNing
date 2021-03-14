@@ -537,7 +537,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.13, y: 20.96, z: -10}
+  m_LocalPosition: {x: 8.13, y: 20.485, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3494,7 +3494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818078470}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.13, y: 20.96, z: -10}
+  m_LocalPosition: {x: 8.13, y: 20.485, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 615072800}
@@ -3573,7 +3573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pfItemWorld: {fileID: 8948543121307653101, guid: 68e9d9782baaa3a46b55460f44f2849f,
     type: 3}
-  swordSprite: {fileID: 21300000, guid: 03dd1ef6fb163214c9e1ac0242dab3ba, type: 3}
+  swordSprite: {fileID: 21300000, guid: d1a2ae92aee668240be7d62410ec6d80, type: 3}
   healthPotionSprite: {fileID: 21300000, guid: 68c10261460203344bf1a60649bc0591, type: 3}
   manaPotionSprite: {fileID: 21300000, guid: 844b760bc3bd14243a0922e5de69916e, type: 3}
   coinSprite: {fileID: 21300000, guid: a3d7552fc2c159a4fbbb1c49e367a226, type: 3}
@@ -3878,10 +3878,10 @@ RectTransform:
   m_Father: {fileID: 1457883489}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000011444, y: -0.000005722}
-  m_SizeDelta: {x: 849.04895, y: 506.60828}
+  m_AnchoredPosition: {x: -0.000011444092, y: 25}
+  m_SizeDelta: {x: 849.04895, y: 432.07623}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1392540701
 MonoBehaviour:
@@ -3999,7 +3999,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 240, y: -200}
+  m_AnchoredPosition: {x: 224.2, y: -166.6}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1457883490
@@ -4146,8 +4146,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -80.27, y: 59.01}
-  m_SizeDelta: {x: 45, y: 45}
+  m_AnchoredPosition: {x: -212.91, y: 57.92}
+  m_SizeDelta: {x: 47.17189, y: 47.17189}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1852183258
 GameObject:
@@ -4182,8 +4182,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.6, y: -44.9}
-  m_SizeDelta: {x: 220.37726, y: 177.81967}
+  m_AnchoredPosition: {x: -0.2, y: -44.5}
+  m_SizeDelta: {x: 483.50397, y: 177.0199}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1946940006
 GameObject:
@@ -19128,7 +19128,7 @@ PrefabInstance:
     - target: {fileID: 1135405287480836567, guid: 36d36746e1d49b6448149bd66cd8241f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.96
+      value: 20.485
       objectReference: {fileID: 0}
     - target: {fileID: 1135405287480836567, guid: 36d36746e1d49b6448149bd66cd8241f,
         type: 3}
@@ -19196,7 +19196,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0070672035, y: -0.17264223}
+  m_Offset: {x: -0.003355503, y: 0.6902695}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -19207,7 +19207,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9858656, y: 1.6547155}
+  m_Size: {x: 0.66665936, y: 0.71442795}
   m_EdgeRadius: 0
 --- !u!1001 &6058991625959678771
 PrefabInstance:
@@ -19343,12 +19343,32 @@ PrefabInstance:
     - target: {fileID: 2005199137632493346, guid: 68e9d9782baaa3a46b55460f44f2849f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2005199137632493346, guid: 68e9d9782baaa3a46b55460f44f2849f,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6941030945420384386, guid: 68e9d9782baaa3a46b55460f44f2849f,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.20055428
+      objectReference: {fileID: 0}
+    - target: {fileID: 6941030945420384386, guid: 68e9d9782baaa3a46b55460f44f2849f,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.20852365
+      objectReference: {fileID: 0}
+    - target: {fileID: 6941030945420384386, guid: 68e9d9782baaa3a46b55460f44f2849f,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.003143385
+      objectReference: {fileID: 0}
+    - target: {fileID: 6941030945420384386, guid: 68e9d9782baaa3a46b55460f44f2849f,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.007532172
       objectReference: {fileID: 0}
     - target: {fileID: 8948543121307653101, guid: 68e9d9782baaa3a46b55460f44f2849f,
         type: 3}
