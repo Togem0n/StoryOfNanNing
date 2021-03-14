@@ -23,14 +23,26 @@ public class PlayerController : MonoBehaviour
         inventory = new Inventory();
         ui_Inventory.SetInventory(inventory);
 
-        ItemWorld.SpawnItemWorld(new Vector3(20, 20), new Item { itemType = Item.ItemType.Sword, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(-20, 20), new Item { itemType = Item.ItemType.Sword, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(10, 18), new Item { itemType = Item.ItemType.Sword, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(10, 24), new Item { itemType = Item.ItemType.Sword, amount = 1 });
 
-        ItemWorld.SpawnItemWorld(new Vector3(20, -20), new Item { itemType = Item.ItemType.Sword, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(5, 24), new Item { itemType = Item.ItemType.Sword, amount = 1 });
 
-        ItemWorld.SpawnItemWorld(new Vector3(0, 20), new Item { itemType = Item.ItemType.Sword, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(5, 18), new Item { itemType = Item.ItemType.Sword, amount = 1 });
 
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
+
+        if (itemWorld != null)
+        {
+            //Touching item
+            inventory.AddItem(itemWorld.GetItem());
+            itemWorld.DestroySelf();
+        }
     }
 
     // Update is called once per frame
