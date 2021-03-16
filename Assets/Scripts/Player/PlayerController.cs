@@ -22,19 +22,19 @@ public class PlayerController : MonoBehaviour
 
         inventory = new Inventory();
         ui_Inventory.SetInventory(inventory);
-
-        ItemWorld.SpawnItemWorld(new Vector3(10, 18), new Item { itemType = Item.ItemType.Sword, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(10, 24), new Item { itemType = Item.ItemType.Sword, amount = 1 });
-
+        ui_Inventory.SetPlayer(this);
+        /*ItemWorld.SpawnItemWorld(new Vector3(10, 18), new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(10, 24), new Item { itemType = Item.ItemType.ManaPotion, amount = 1 });
         ItemWorld.SpawnItemWorld(new Vector3(5, 24), new Item { itemType = Item.ItemType.Sword, amount = 1 });
-
         ItemWorld.SpawnItemWorld(new Vector3(5, 18), new Item { itemType = Item.ItemType.Sword, amount = 1 });
-
         ItemWorld.SpawnItemWorld(new Vector3(10, 21), new Item { itemType = Item.ItemType.Sword, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(5, 21), new Item { itemType = Item.ItemType.Sword, amount = 1 });*/
 
-        ItemWorld.SpawnItemWorld(new Vector3(5, 21), new Item { itemType = Item.ItemType.Sword, amount = 1 });
+    }
 
-
+    public Vector3 GetPosition()
+    {
+        return transform.position;
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

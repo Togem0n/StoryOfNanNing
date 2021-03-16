@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using CodeMonkey.Utils;
 
 public class UI_Inventory : MonoBehaviour
 {
     private Inventory inventory;
     private Transform itemSlotContainer;
     private Transform itemSlotTemplate;
+    public PlayerController player;
 
     private void Awake()
     {
         itemSlotContainer = transform.Find("itemSlotContainer");
         itemSlotTemplate = itemSlotContainer.Find("itemSlotTemplate");
+    }
+
+    public void SetPlayer(PlayerController player)
+    {
+        this.player = player;
     }
 
     public void SetInventory(Inventory inventory)
@@ -43,10 +51,32 @@ public class UI_Inventory : MonoBehaviour
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
             itemSlotRectTransform.gameObject.SetActive(true);
 
+            itemSlotRectTransform.GetComponent<Button_UI>().ClickFunc = () =>
+            {
+                //use
+
+            };
+
+            itemSlotRectTransform.GetComponent<Button_UI>().MouseRightClickFunc = () =>
+            {
+                //drop
+                inventory.RemoveItem(item);
+                ItemWorld.DropItem(player.GetPosition(), item);
+            };
+
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize - 215f, y * itemSlotCellSize + 60f);
             Image image = itemSlotRectTransform.Find("image").GetComponent<Image>();
             image.sprite = item.GetSprite();
-             
+            TextMeshProUGUI uitext = itemSlotRectTransform.Find("text").GetComponent<TextMeshProUGUI>();
+            if (item.amount > 1)
+            {
+                uitext.SetText(item.amount.ToString());
+            }
+            else
+            {
+                uitext.SetText("");
+            }
+
             x++;
             if(x >= 9)
             {

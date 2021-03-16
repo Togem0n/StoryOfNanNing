@@ -30,4 +30,19 @@ public class Item
             case ItemType.Medkit:       return ItemAssets.Instance.medkitSprite;
         }
     }
+    
+    public bool IsStackable()
+    {
+        switch (itemType)
+        {
+            default:
+            case ItemType.Coin:
+            case ItemType.HealthPotion:
+            case ItemType.ManaPotion:
+                return true;
+            case ItemType.Sword:
+            case ItemType.Medkit:
+                return false;
+        }
+    }
 }
