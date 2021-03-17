@@ -3,21 +3,30 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 有AddItem, RemoveItem, GetItem基本方法
+/// </summary>
+
 public class Inventory
 {
     public event EventHandler OnItemListChanged;
 
     private List<Item> itemList;
+    private int maxCapacity = 27;
 
     public Inventory()
     {
         itemList = new List<Item>();
 
-        /*AddItem(new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.ManaPotion, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.ManaPotion, amount = 1 });*/
+        for (int i = 0; i < maxCapacity; i++)
+        {
+            itemList.Add(new Item { itemType = Item.ItemType.None, amount = 1, index = i});
+        }
 
+/*        for (int i = 0; i < maxCapacity; i++)
+        {
+            Debug.Log(itemList[i].index);
+        }*/
 
         Debug.Log("Inventory");
         Debug.Log(itemList.Count);
@@ -34,25 +43,53 @@ public class Inventory
                 {
                     inventoryItem.amount += 1;
                     itemAlreadyInInventory = true;
-                    Debug.Log("inventoryitem:" + inventoryItem.amount + inventoryItem.itemType);
-                    
-
                 }
             }
 
             if (!itemAlreadyInInventory)
             {
-                itemList.Add(item);
-                item.amount = 1;
+
+                foreach (Item inventoryItem in itemList)
+                {
+                    Item None_item = new Item { itemType = Item.ItemType.None, amount = 1 };
+                    if (inventoryItem.itemType == None_item.itemType)
+                    {           
+                        item.amount = 1;
+                        item.index = inventoryItem.index;
+                        itemList.RemoveAt(inventoryItem.index);
+                        itemList.Insert(item.index, item);
+                        break;
+                    }
+                }
             }
         }
         else
         {
-            itemList.Add(item);
+            foreach (Item inventoryItem in itemList)
+            {
+                Item None_item = new Item { itemType = Item.ItemType.None, amount = 1 };
+                if (inventoryItem.itemType == None_item.itemType)
+                {
+                    item.amount = 1;
+                    item.index = inventoryItem.index;
+                    itemList.RemoveAt(inventoryItem.index);
+                    itemList.Insert(item.index, item);
+                    break;
+                }
+            }
         }
+
+/*        Debug.Log("start");
+        foreach (Item inventoryItem in itemList)
+        {  
+            Debug.Log(inventoryItem.itemType);
+        }
+        Debug.Log("end");*/
+
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    // 删除有问题，需要解决
     public void RemoveItem(Item item)
     {
         if (item.IsStackable())
@@ -64,7 +101,7 @@ public class Inventory
                 {
                     inventoryItem.amount -= 1;
                     
-                    //Debug.Log("item"+item.amount+item.itemType);
+                    Debug.Log("item"+item.amount+item.itemType);
 
                     itemInInventory = inventoryItem;
                 }
@@ -72,12 +109,21 @@ public class Inventory
 
             if (itemInInventory != null && itemInInventory.amount <= 0)
             {
-                itemList.Remove(itemInInventory);
+                //itemList.Remove(itemInInventory);
+                Item None_item = new Item { itemType = Item.ItemType.None, amount = 1, index = itemInInventory.index };
+                itemList.RemoveAt(itemInInventory.index);
+                itemList.Insert(None_item.index, None_item);
+                //itemInInventory.itemType = None_item.itemType;
+
             }
         }
         else
         {
-            itemList.Remove(item);
+            //itemList.Remove(item);
+            Item None_item = new Item { itemType = Item.ItemType.None, amount = 1, index = item.index};
+            itemList.RemoveAt(item.index);
+            itemList.Insert(None_item.index, None_item);
+            //item.itemType = None_item.itemType;
         }
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
@@ -87,5 +133,21 @@ public class Inventory
         return itemList;
     }
 
+    public int GetMaxCapacity()
+    {
+        return maxCapacity;
+    }
+
+    public bool itemInList(Item item)
+    {
+        foreach(Item titem in itemList)
+        {
+            if(titem.itemType == item.itemType)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

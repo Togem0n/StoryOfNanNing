@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour
     Vector2 moveDirection = new Vector2(1, 0);
 
     private Inventory inventory;
-    [SerializeField] private UI_Inventory ui_Inventory; 
+    [SerializeField] private UI_Inventory ui_Inventory;
+    bool ui_Inventory_status = false;
+    public int numOfOwnItem = 0;
 
     void Start()
     {
@@ -23,6 +25,8 @@ public class PlayerController : MonoBehaviour
         inventory = new Inventory();
         ui_Inventory.SetInventory(inventory);
         ui_Inventory.SetPlayer(this);
+
+        ui_Inventory.gameObject.SetActive(false);
         /*ItemWorld.SpawnItemWorld(new Vector3(10, 18), new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
         ItemWorld.SpawnItemWorld(new Vector3(10, 24), new Item { itemType = Item.ItemType.ManaPotion, amount = 1 });
         ItemWorld.SpawnItemWorld(new Vector3(5, 24), new Item { itemType = Item.ItemType.Sword, amount = 1 });
@@ -41,12 +45,27 @@ public class PlayerController : MonoBehaviour
     {
         ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
 
-        if (itemWorld != null)
+        if(numOfOwnItem < inventory.GetMaxCapacity())
         {
-            //Touching item
-            inventory.AddItem(itemWorld.GetItem());
-            itemWorld.DestroySelf();
+            if (itemWorld != null)
+            {
+                //Touching item
+                inventory.AddItem(itemWorld.GetItem());
+                if (inventory.itemInList(itemWorld.GetItem()))
+                {
+                    if (!itemWorld.GetItem().IsStackable())
+                    {
+                        numOfOwnItem += 1;
+                    }
+                }
+                else
+                {
+                    numOfOwnItem += 1;
+                }
+                itemWorld.DestroySelf();
+            }     
         }
+        
     }
 
     // Update is called once per frame
@@ -67,6 +86,8 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Move Y", moveDirection.y);
         animator.SetFloat("Speed", move.magnitude);
 
+        OpenMyBag();
+
     }
 
     void FixedUpdate()
@@ -76,4 +97,22 @@ public class PlayerController : MonoBehaviour
         position.y = position.y + speed * vertical * Time.deltaTime;
         transform.position = position;
     }
+
+    void OpenMyBag()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(ui_Inventory_status == false )
+            {
+                ui_Inventory.gameObject.SetActive(true);
+            }
+            else
+            {
+                ui_Inventory.gameObject.SetActive(false);
+            }
+            ui_Inventory_status = !ui_Inventory_status;
+        }
+    }
+
+
 }

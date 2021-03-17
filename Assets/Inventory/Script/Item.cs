@@ -8,6 +8,7 @@ public class Item
 {
     public enum ItemType
     {
+        None,
         Sword,
         HealthPotion,
         ManaPotion,
@@ -17,12 +18,14 @@ public class Item
 
     public ItemType itemType;
     public int amount;
+    public int index;
 
     public Sprite GetSprite()
     {
         switch (itemType)
         {
             default:
+            case ItemType.None:         return ItemAssets.Instance.NoneSprite;
             case ItemType.Sword:        return ItemAssets.Instance.swordSprite;
             case ItemType.HealthPotion: return ItemAssets.Instance.healthPotionSprite;
             case ItemType.ManaPotion:   return ItemAssets.Instance.manaPotionSprite;
@@ -40,6 +43,7 @@ public class Item
             case ItemType.HealthPotion:
             case ItemType.ManaPotion:
                 return true;
+            case ItemType.None:
             case ItemType.Sword:
             case ItemType.Medkit:
                 return false;

@@ -51,23 +51,35 @@ public class UI_Inventory : MonoBehaviour
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
             itemSlotRectTransform.gameObject.SetActive(true);
 
-            itemSlotRectTransform.GetComponent<Button_UI>().ClickFunc = () =>
+            /*itemSlotRectTransform.GetComponent<Button_UI>().ClickFunc = () =>
             {
                 //use
-
-            };
-
+            };*/
+            
             itemSlotRectTransform.GetComponent<Button_UI>().MouseRightClickFunc = () =>
             {
-                //drop
-                inventory.RemoveItem(item);
-                ItemWorld.DropItem(player.GetPosition(), item);
+                Item None_item = new Item { itemType = Item.ItemType.None, amount = 1, index = -1};
+                if(item.itemType != None_item.itemType)
+                {
+                    Debug.Log("Clicked");
+                    inventory.RemoveItem(item);
+                    ItemWorld.DropItem(player.GetPosition(), item);
+                }
+                //Debug.Log("Clicked");
+                //inventory.RemoveItem(item);
+                //ItemWorld.DropItem(player.GetPosition(), item);
             };
 
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize - 215f, y * itemSlotCellSize + 60f);
             Image image = itemSlotRectTransform.Find("image").GetComponent<Image>();
             image.sprite = item.GetSprite();
             TextMeshProUGUI uitext = itemSlotRectTransform.Find("text").GetComponent<TextMeshProUGUI>();
+
+            if(image.sprite == ItemAssets.Instance.NoneSprite)
+            {
+                image.color = new Color32(255, 255, 225, 0);
+            }
+
             if (item.amount > 1)
             {
                 uitext.SetText(item.amount.ToString());
