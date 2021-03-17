@@ -13,7 +13,10 @@ public class PlayerController : MonoBehaviour
     Vector2 moveDirection = new Vector2(1, 0);
 
     private Inventory inventory;
+
     [SerializeField] private UI_Inventory ui_Inventory;
+    [SerializeField] private DragDrop dragDrop;
+
     bool ui_Inventory_status = false;
     public int numOfOwnItem = 0;
 
@@ -25,8 +28,9 @@ public class PlayerController : MonoBehaviour
         inventory = new Inventory();
         ui_Inventory.SetInventory(inventory);
         ui_Inventory.SetPlayer(this);
-
         ui_Inventory.gameObject.SetActive(false);
+
+
         /*ItemWorld.SpawnItemWorld(new Vector3(10, 18), new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
         ItemWorld.SpawnItemWorld(new Vector3(10, 24), new Item { itemType = Item.ItemType.ManaPotion, amount = 1 });
         ItemWorld.SpawnItemWorld(new Vector3(5, 24), new Item { itemType = Item.ItemType.Sword, amount = 1 });
@@ -112,6 +116,11 @@ public class PlayerController : MonoBehaviour
             }
             ui_Inventory_status = !ui_Inventory_status;
         }
+    }
+
+    public Inventory GetInventory()
+    {
+        return inventory;
     }
 
 

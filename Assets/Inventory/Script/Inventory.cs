@@ -79,12 +79,6 @@ public class Inventory
             }
         }
 
-/*        Debug.Log("start");
-        foreach (Item inventoryItem in itemList)
-        {  
-            Debug.Log(inventoryItem.itemType);
-        }
-        Debug.Log("end");*/
 
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
@@ -136,6 +130,11 @@ public class Inventory
     public int GetMaxCapacity()
     {
         return maxCapacity;
+    }
+
+    public void SetMaxCapacity(int maxCapacity)
+    {
+        this.maxCapacity = maxCapacity;
     }
 
     public bool itemInList(Item item)

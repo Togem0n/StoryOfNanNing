@@ -49,6 +49,7 @@ public class UI_Inventory : MonoBehaviour
         foreach(Item item in inventory.GetItemList())
         {
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
+            itemSlotRectTransform.name = item.index.ToString() + "_" + item.itemType.ToString() + "_" + item.amount.ToString();
             itemSlotRectTransform.gameObject.SetActive(true);
 
             /*itemSlotRectTransform.GetComponent<Button_UI>().ClickFunc = () =>
