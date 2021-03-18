@@ -28,8 +28,8 @@ public class Grid
         {
             for (int y = 0; y < gridArray.GetLength(1); y++)
             {
-                gridArray[x, y] = new Cell(0);
-                debugTextArray[x, y] = UtilsClass.CreateWorldText(gridArray[x, y].getValue().ToString(), null, GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * .5f, 8, Color.white, TextAnchor.MiddleCenter);
+                gridArray[x, y] = new Cell(Cell.CellType.Grass, x, y, true); //初始地形默认为草地
+                debugTextArray[x, y] = UtilsClass.CreateWorldText(gridArray[x, y].GetValue().ToString(), null, GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * .5f, 8, Color.white, TextAnchor.MiddleCenter);
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.white, 100f);
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), Color.white, 100f);
             }
@@ -55,8 +55,8 @@ public class Grid
         if (x >= 0 && y >= 0 && x < width && y < height)
         {
             //gridArray[x, y].value = value;
-            gridArray[x, y].SetValue(value);
-            debugTextArray[x, y].text = gridArray[x, y].getValue().ToString();
+            gridArray[x, y].SetValue((Cell.CellType)value);
+            debugTextArray[x, y].text = gridArray[x, y].GetValue().ToString();
         }
     }
 
@@ -71,7 +71,7 @@ public class Grid
     {
         if (x >= 0 && y >= 0 && x < width && y < height)
         {
-            return gridArray[x, y].getValue();
+            return gridArray[x, y].GetValue();
         }
         else
         {

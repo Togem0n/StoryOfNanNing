@@ -14,6 +14,8 @@ public class Item
         ManaPotion,
         Coin,
         Medkit,
+        Hoe,
+        WaterBucket
     }
 
     public ItemType itemType;
@@ -31,6 +33,8 @@ public class Item
             case ItemType.ManaPotion:   return ItemAssets.Instance.manaPotionSprite;
             case ItemType.Coin:         return ItemAssets.Instance.coinSprite;
             case ItemType.Medkit:       return ItemAssets.Instance.medkitSprite;
+            case ItemType.Hoe:          return ItemAssets.Instance.hoeSprite;
+            case ItemType.WaterBucket:  return ItemAssets.Instance.waterBucketSprite;
         }
     }
     
@@ -46,6 +50,8 @@ public class Item
             case ItemType.None:
             case ItemType.Sword:
             case ItemType.Medkit:
+            case ItemType.Hoe:
+            case ItemType.WaterBucket:
                 return false;
         }
     }

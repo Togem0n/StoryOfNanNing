@@ -19,5 +19,6 @@ public class ItemAssets : MonoBehaviour
     public Sprite manaPotionSprite;
     public Sprite coinSprite;
     public Sprite medkitSprite;
-
+    public Sprite hoeSprite;
+    public Sprite waterBucketSprite;
 }

@@ -1,25 +1,60 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public  class Cell
+
+public class Cell
 {
-    private int value;
-    private bool isTaken;
-    private bool isWatered;
 
-    public Cell(int value)
+    public enum CellType
     {
-        this.value = value;
+        UnFarmedland,    //没耕过的地
+        FarmedLand,  //耕过的地
+        WateredLand,  //浇过水的耕地
+        Grass,
+        Water,
+        Building,
+        Wasteland
     }
 
-    public int getValue()
+
+    public CellType cellType;
+    // Index in the array
+    public int x;
+    public int y;
+    // 该区块是否可用
+    public bool isAvailable;
+
+
+    public Cell(CellType cellType, int x, int y, bool isAvailable)
     {
-        return this.value;
+        this.cellType = cellType;
+        this.x = x;
+        this.y = y;
+        this.isAvailable = isAvailable;
     }
-    public void SetValue(int value)
+
+
+    // 耕地
+    public void PlowLand()
     {
-        this.value = value;
+        if (this.cellType == CellType.UnFarmedland && this.isAvailable == true)
+        {
+            this.cellType = CellType.FarmedLand;
+        }
     }
+
+    public int GetValue()
+    {
+        return (int)cellType;
+    }
+
+    public void SetValue(CellType cellType)
+    {
+        this.cellType = cellType;
+    }
+
+
 
 }
