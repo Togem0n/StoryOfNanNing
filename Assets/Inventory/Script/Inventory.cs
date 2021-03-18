@@ -48,7 +48,6 @@ public class Inventory
 
             if (!itemAlreadyInInventory)
             {
-
                 foreach (Item inventoryItem in itemList)
                 {
                     Item None_item = new Item { itemType = Item.ItemType.None, amount = 1 };

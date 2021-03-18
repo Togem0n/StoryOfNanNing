@@ -50,14 +50,14 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
         transform.position = eventData.position;
         transform.SetParent(transform.parent.parent);
-        
+
+        transform.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         //Debug.Log(eventData.pointerPressRaycast.gameObject.name);
-        transform.GetComponent<CanvasGroup>().blocksRaycasts = false;
         transform.position = eventData.position;   
     }
 
@@ -92,8 +92,8 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             nextParent.name = nextIndex.ToString() + "_" + itemList[nextIndex].itemType.ToString() + "_" + itemList[nextIndex].amount.ToString();
 
             nextText = nextParent.Find("text").GetComponent<TextMeshProUGUI>();
-            //Debug.Log(itemList[originIndex].amount);
-            //Debug.Log(itemList[nextIndex].amount);
+            Debug.Log(itemList[originIndex].amount);
+            Debug.Log(itemList[nextIndex].amount);
 
             originText.color = new Color32(255, 255, 225, 255);
             if (itemList[originIndex].amount >= 2)
@@ -129,7 +129,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(eventData.button == PointerEventData.InputButton.Right)
+        if (eventData.button == PointerEventData.InputButton.Right)
         {
             Debug.Log("right click");
             //Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.ToString());

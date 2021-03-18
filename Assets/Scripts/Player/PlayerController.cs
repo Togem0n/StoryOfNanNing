@@ -59,15 +59,15 @@ public class PlayerController : MonoBehaviour
                 {
                     if (!itemWorld.GetItem().IsStackable())
                     {
-                        inventory.AddItem(itemWorld.GetItem());
                         numOfOwnItem += 1;
                     }
                 }
                 else
                 {
-                    inventory.AddItem(itemWorld.GetItem());
+                    
                     numOfOwnItem += 1;
                 }
+                inventory.AddItem(itemWorld.GetItem());
                 itemWorld.DestroySelf();
             }     
         }else if(numOfOwnItem == inventory.GetMaxCapacity())
