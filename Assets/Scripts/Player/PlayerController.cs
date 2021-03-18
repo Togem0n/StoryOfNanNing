@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private DragDrop dragDrop;
 
     bool ui_Inventory_status = false;
-    public int numOfOwnItem = 0;
+    private int numOfOwnItem = 0;
+    private Item itemInUse;
 
     void Start()
     {
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour
         ui_Inventory.SetPlayer(this);
         ui_Inventory.gameObject.SetActive(false);
 
-
+        itemInUse = new Item { itemType = Item.ItemType.None, amount = 1 };
         /*ItemWorld.SpawnItemWorld(new Vector3(10, 18), new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
         ItemWorld.SpawnItemWorld(new Vector3(10, 24), new Item { itemType = Item.ItemType.ManaPotion, amount = 1 });
         ItemWorld.SpawnItemWorld(new Vector3(5, 24), new Item { itemType = Item.ItemType.Sword, amount = 1 });
@@ -48,28 +49,39 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
-
+        
         if(numOfOwnItem < inventory.GetMaxCapacity())
         {
             if (itemWorld != null)
             {
                 //Touching item
-                inventory.AddItem(itemWorld.GetItem());
                 if (inventory.itemInList(itemWorld.GetItem()))
                 {
                     if (!itemWorld.GetItem().IsStackable())
                     {
+                        inventory.AddItem(itemWorld.GetItem());
                         numOfOwnItem += 1;
                     }
                 }
                 else
                 {
+                    inventory.AddItem(itemWorld.GetItem());
                     numOfOwnItem += 1;
                 }
                 itemWorld.DestroySelf();
             }     
+        }else if(numOfOwnItem == inventory.GetMaxCapacity())
+        {
+            if (inventory.itemInList(itemWorld.GetItem()))
+            {
+                if (itemWorld.GetItem().IsStackable())
+                {
+                    inventory.AddItem(itemWorld.GetItem());
+                    itemWorld.DestroySelf();
+                }
+            }
         }
-        
+        //Debug.Log(numOfOwnItem);
     }
 
     // Update is called once per frame
@@ -121,6 +133,16 @@ public class PlayerController : MonoBehaviour
     public Inventory GetInventory()
     {
         return inventory;
+    }
+
+    public Item GetItemInUse()
+    {
+        return itemInUse;
+    }
+
+    public void SetItemInUse(Item item)
+    {
+        itemInUse = item;
     }
 
 

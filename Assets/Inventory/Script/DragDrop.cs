@@ -5,20 +5,23 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler
 {
 
     private Transform originParent;
     private Transform originGrandpa;
     private Vector3 originPosition;
     private int originIndex;
+    private TextMeshProUGUI originText;
+
+    private Transform nextParent;
+    private int nextIndex;
+    private TextMeshProUGUI nextText;
+
     private Inventory inventory;
     private List<Item> itemList;
+
     [SerializeField] private PlayerController player;
-
-
-    TextMeshProUGUI originText;
-
 
     private void Start()
     {
@@ -31,48 +34,49 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     }
 
+
     public void OnBeginDrag(PointerEventData eventData)
     {
+        //Debug.Log("drag!");
         originGrandpa = transform.parent.parent;
         originParent = transform.parent;
         originPosition = transform.position;
+
         string[] originParentName = transform.parent.name.ToString().Split('_');
         originIndex = int.Parse(originParentName[0]);
-        originText = originParent.Find("text").GetComponent<TextMeshProUGUI>();
 
+        originText = originParent.Find("text").GetComponent<TextMeshProUGUI>();
         originText.color = new Color32(255, 255, 225, 0);
-        //Debug.Log(originIndex);
 
         transform.position = eventData.position;
         transform.SetParent(transform.parent.parent);
+        
 
-        //Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
-        transform.GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        //Debug.Log(eventData.pointerPressRaycast.gameObject.name);
+        transform.GetComponent<CanvasGroup>().blocksRaycasts = false;
         transform.position = eventData.position;   
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-
-        //Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
-
-        if(eventData.pointerCurrentRaycast.gameObject.name == "image")
+        if (eventData.pointerCurrentRaycast.gameObject.name == "image")
         {
 
             transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent);
             transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
+
             //Save itemList
-            Transform nextParent = eventData.pointerCurrentRaycast.gameObject.transform.parent;
+            nextParent = eventData.pointerCurrentRaycast.gameObject.transform.parent;
             string[] nextParentName = nextParent.name.ToString().Split('_');
-            int nextIndex = int.Parse(nextParentName[0]);
-            //Debug.Log(nextIndex);
+            nextIndex = int.Parse(nextParentName[0]);
 
             Item nextItem = itemList[nextIndex];
             Item originItem = itemList[originIndex];
+
             originItem.index = nextIndex;
             nextItem.index = originIndex;
 
@@ -80,14 +84,16 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             itemList.Insert(nextIndex, originItem);
             itemList.RemoveAt(originIndex);
             itemList.Insert(originIndex, nextItem);
+            //Save itemList
 
-            // after itemList changed
+
+            // After itemList Changed, rename template and show origin/next text
             originParent.name = originIndex.ToString() + "_" + itemList[originIndex].itemType.ToString() + "_" + itemList[originIndex].amount.ToString();
             nextParent.name = nextIndex.ToString() + "_" + itemList[nextIndex].itemType.ToString() + "_" + itemList[nextIndex].amount.ToString();
 
-            TextMeshProUGUI nextText = nextParent.Find("text").GetComponent<TextMeshProUGUI>();
-            Debug.Log(itemList[originIndex].amount);
-            Debug.Log(itemList[nextIndex].amount);
+            nextText = nextParent.Find("text").GetComponent<TextMeshProUGUI>();
+            //Debug.Log(itemList[originIndex].amount);
+            //Debug.Log(itemList[nextIndex].amount);
 
             originText.color = new Color32(255, 255, 225, 255);
             if (itemList[originIndex].amount >= 2)
@@ -107,17 +113,9 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             {
                 nextText.SetText("");
             }
-            
-            //Save itemList
+
             eventData.pointerCurrentRaycast.gameObject.transform.SetParent(originParent);
             eventData.pointerCurrentRaycast.gameObject.transform.position = originPosition;
-
-            /* foreach (Item item in itemList)
-            {
-                Debug.Log(item.itemType.ToString() + " " + item.index.ToString());
-            }*/
-
-
         }
         else
         {
@@ -127,5 +125,19 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
 
         transform.GetComponent<CanvasGroup>().blocksRaycasts = true;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            Debug.Log("right click");
+            //Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.ToString());
+            string[] nameSub = eventData.pointerCurrentRaycast.gameObject.transform.parent.name.ToString().Split('_');
+            int indexOfItemInUse = int.Parse(nameSub[0]);
+            //Debug.Log(nameSub[1].ToString());
+            player.SetItemInUse(itemList[indexOfItemInUse]);
+        }
+        Debug.Log(player.GetItemInUse().itemType);
     }
 }

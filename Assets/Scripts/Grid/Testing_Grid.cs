@@ -11,7 +11,6 @@ public class Testing_Grid : MonoBehaviour
     private void Start()
     {
         Debug.Log("nmsl");
-
         grid = new Grid(50, 50, 1f, new Vector3(0, 0));
         Debug.Log("nmsl");
     }
