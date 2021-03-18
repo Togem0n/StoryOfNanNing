@@ -47,6 +47,7 @@ public class Testing_Grid : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             PlowLand();
+            WaterLand();
         }
 
         // 右键显示该区块的值和位置
@@ -66,6 +67,18 @@ public class Testing_Grid : MonoBehaviour
         {
             grid.SetValue(UtilsClass.GetMouseWorldPosition(), 1);
             ground1.SetTile(new Vector3Int(mouseX, mouseY, 0), farmedlandTile);
+        }
+    }
+
+    public void WaterLand()
+    {
+        // get item in use
+        itemInUse = player.GetItemInUse();
+
+        if (itemInUse.itemType == Item.ItemType.WaterBucket && grid.GetValue(UtilsClass.GetMouseWorldPosition()) == 1 && IsReachable())
+        {
+            grid.SetValue(UtilsClass.GetMouseWorldPosition(), 2);
+            ground1.SetTile(new Vector3Int(mouseX, mouseY, 0), wateredlandTile);
         }
     }
 

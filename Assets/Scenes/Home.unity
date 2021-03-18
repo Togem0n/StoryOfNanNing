@@ -4120,8 +4120,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ground1: {fileID: 1946940009}
   unFarmedlandTile: {fileID: 11400000, guid: a6f2f4f33a81e9d4b9b7e1f2808130c7, type: 2}
-  farmedlandTile: {fileID: 11400000, guid: 0981b2d9fc48fa34fb3acaccd5434121, type: 2}
-  wateredlandTile: {fileID: 11400000, guid: 834e6e7e68e4cdc4aafaef7391ad8bd0, type: 2}
+  farmedlandTile: {fileID: 11400000, guid: 77568d47e04d3af48be2f457dd2fd9ae, type: 2}
+  wateredlandTile: {fileID: 11400000, guid: f7bfcd9a3db88ae47b39f917e6f27d85, type: 2}
   grassTile: {fileID: 0}
   buildingTile: {fileID: 0}
   wasteLandTile: {fileID: 0}
