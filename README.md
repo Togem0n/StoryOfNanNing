@@ -1,4 +1,4 @@
-StardewValley:
+StoryOfNanNing:
 
 28/02：Player movement completed，**idle** animation not finsihed，small bug in idle->walking
 
