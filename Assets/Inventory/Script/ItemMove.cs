@@ -26,7 +26,7 @@ public class ItemMove : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isMouseDown = false;
-            lastMousePosition = Vector3.zero;//这里要归零，不然会有漂移效果
+            lastMousePosition = Vector3.zero;//reset to 0 otherwise werid things happen
         }
         if (isMouseDown)
         {

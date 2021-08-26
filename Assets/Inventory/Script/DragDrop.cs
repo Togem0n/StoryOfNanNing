@@ -131,7 +131,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log("right click");
+            //Debug.Log("right click");
             //Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent.name.ToString());
             string[] nameSub = eventData.pointerCurrentRaycast.gameObject.transform.parent.name.ToString().Split('_');
             int indexOfItemInUse = int.Parse(nameSub[0]);

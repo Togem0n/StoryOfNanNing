@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public float speed = 6.0f;
-    Animator animator;
-    Rigidbody2D rigidbody2d;
+    // Movement attributes initialization
+    public float speed;
     float horizontal;
     float vertical;
+    Animator animator;
+    Rigidbody2D rigidbody2d;
     Vector2 moveDirection = new Vector2(1, 0);
 
+    // Player inventory attibutes
     private Inventory inventory;
-
     [SerializeField] private UI_Inventory ui_Inventory;
     [SerializeField] private DragDrop dragDrop;
-
     bool ui_Inventory_status = false;
     private int numOfOwnItem = 0;
     private Item itemInUse;
@@ -48,40 +47,43 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
-        
-        if(numOfOwnItem < inventory.GetMaxCapacity())
+        if(collider.GetComponent<ItemWorld>() != null)
         {
-            if (itemWorld != null)
+            ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
+
+            if (numOfOwnItem < inventory.GetMaxCapacity())
             {
-                //Touching item
-                if (inventory.itemInList(itemWorld.GetItem()))
+                if (itemWorld != null)
                 {
-                    if (!itemWorld.GetItem().IsStackable())
+                    //Touching item
+                    if (inventory.itemInList(itemWorld.GetItem()))
+                    {
+                        if (!itemWorld.GetItem().IsStackable())
+                        {
+                            numOfOwnItem += 1;
+                        }
+                    }
+                    else
                     {
                         numOfOwnItem += 1;
                     }
-                }
-                else
-                {
-                    
-                    numOfOwnItem += 1;
-                }
-                inventory.AddItem(itemWorld.GetItem());
-                itemWorld.DestroySelf();
-            }     
-        }else if(numOfOwnItem == inventory.GetMaxCapacity())
-        {
-            if (inventory.itemInList(itemWorld.GetItem()))
-            {
-                if (itemWorld.GetItem().IsStackable())
-                {
                     inventory.AddItem(itemWorld.GetItem());
                     itemWorld.DestroySelf();
                 }
             }
+            else if (numOfOwnItem == inventory.GetMaxCapacity())
+            {
+                if (inventory.itemInList(itemWorld.GetItem()))
+                {
+                    if (itemWorld.GetItem().IsStackable())
+                    {
+                        inventory.AddItem(itemWorld.GetItem());
+                        itemWorld.DestroySelf();
+                    }
+                }
+            }
         }
-        //Debug.Log(numOfOwnItem);
+        
     }
 
     // Update is called once per frame

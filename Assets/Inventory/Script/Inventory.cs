@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 有AddItem, RemoveItem, GetItem基本方法
+/// AddItem, RemoveItem, GetItem
 /// </summary>
 
 public class Inventory
@@ -28,8 +28,9 @@ public class Inventory
             Debug.Log(itemList[i].index);
         }*/
 
-        Debug.Log("Inventory");
-        Debug.Log(itemList.Count);
+        Debug.Log("Press E to open/close your bag.");
+        Debug.Log("Right Click to equip item (useless feature now)");
+        //Debug.Log("ItemList.count:" + itemList.Count);
     }
 
     public void AddItem(Item item)
@@ -82,7 +83,6 @@ public class Inventory
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    // 删除有问题，需要解决
     public void RemoveItem(Item item)
     {
         if (item.IsStackable())
