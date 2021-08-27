@@ -14,7 +14,6 @@ public class Printing : MonoBehaviour
 
     private IEnumerator Print(string printContent, TMP_Text tmp_text)
     {
-        //Debug.Log(printContent);
         tmp_text.text = string.Empty;
         
         float t = 0;

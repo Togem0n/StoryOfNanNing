@@ -9,10 +9,12 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private DialoeObject testDialogueObject;
     [SerializeField] private GameObject dialogue_box;
 
+    private ResponseHandler responseHandler;
     private Printing printing;
 
     private void Awake()
     {
+        responseHandler = GetComponent<ResponseHandler>();
         printing = GetComponent<Printing>();
         CloseDialogue();
         ShowDialogue(testDialogueObject);
@@ -26,13 +28,32 @@ public class DialogueUI : MonoBehaviour
 
     private IEnumerator StepThroughDialogue(DialoeObject dialoeObject)
     {
-        foreach(string dialogueContent in dialoeObject.DialogueArray)
+/*        foreach(string dialogueContent in dialoeObject.DialogueArray)
         {
-            //Debug.Log(dialogueContent);
+            //Corouint inside a coroutine?
             yield return printing.RunCoroutine(dialogueContent, tmp_text);
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+        }*/
+
+        for(int i = 0; i < dialoeObject.DialogueArray.Length; i++)
+        {
+            string dialogueContent = dialoeObject.DialogueArray[i];
+            yield return printing.RunCoroutine(dialogueContent, tmp_text);
+
+            if (i == dialoeObject.DialogueArray.Length - 1 && dialoeObject.HasResponses) break;
+
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
         }
-        CloseDialogue();
+
+        if (dialoeObject.HasResponses)
+        {
+            responseHandler.showResponses(dialoeObject.ResponseArray);
+        }
+        else
+        {
+            CloseDialogue();
+        }
+
     }
 
     public void CloseDialogue()

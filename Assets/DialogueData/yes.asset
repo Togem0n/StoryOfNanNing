@@ -10,18 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25bbc917f24aa1f48ba32d202ec915fa, type: 3}
-  m_Name: test
+  m_Name: yes
   m_EditorClassIdentifier: 
   dialogueArray:
-  - 'Welcome.
-
-    Press E to open/close your bag.
-
-    Enter for continue'
-  - test
-  - test
-  reponseArray:
-  - responseText: yes
-    dialogueObject: {fileID: 11400000, guid: 45336686b1cf86f4eabf7a84c2ae680c, type: 2}
-  - responseText: no
-    dialogueObject: {fileID: 11400000, guid: b07bfa59f6423324a8a13316ac5e59f2, type: 2}
+  - yes
+  responses: []
