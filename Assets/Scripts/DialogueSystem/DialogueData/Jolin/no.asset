@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25bbc917f24aa1f48ba32d202ec915fa, type: 3}
-  m_Name: yes
+  m_Name: no
   m_EditorClassIdentifier: 
   dialogueArray:
-  - yes
-  responses: []
+  - Why I care
+  reponseArray: []

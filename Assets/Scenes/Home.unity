@@ -238,7 +238,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmp_text: {fileID: 629467838}
-  testDialogueObject: {fileID: 11400000, guid: 64413d04bcb5bc140810c0d27196ec91, type: 2}
   dialogue_box: {fileID: 585584159}
 --- !u!114 &276948900
 MonoBehaviour:
@@ -562,6 +561,8 @@ GameObject:
   - component: {fileID: 515940080}
   - component: {fileID: 515940079}
   - component: {fileID: 515940084}
+  - component: {fileID: 515940085}
+  - component: {fileID: 515940086}
   m_Layer: 0
   m_Name: Jolin
   m_TagString: NPC
@@ -584,6 +585,7 @@ MonoBehaviour:
   speed: 6
   ui_Inventory: {fileID: 0}
   dragDrop: {fileID: 0}
+  dialogueUI: {fileID: 0}
 --- !u!95 &515940080
 Animator:
   serializedVersion: 3
@@ -715,6 +717,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9591694, y: 0.5436821}
   m_EdgeRadius: 0
+--- !u!114 &515940085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515940078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7865c005aff3e73438a1ac052d8b12f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueObject: {fileID: 11400000, guid: 64413d04bcb5bc140810c0d27196ec91, type: 2}
+--- !u!58 &515940086
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515940078}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.05489254, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.7185144
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -22911,6 +22942,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1135405287480836566, guid: 36d36746e1d49b6448149bd66cd8241f,
         type: 3}
+      propertyPath: dialogueUI
+      value: 
+      objectReference: {fileID: 276948899}
+    - target: {fileID: 1135405287480836566, guid: 36d36746e1d49b6448149bd66cd8241f,
+        type: 3}
       propertyPath: ui_Inventory
       value: 
       objectReference: {fileID: 1457883490}
@@ -23171,6 +23207,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1485586625}
     m_Modifications:
+    - target: {fileID: 6997212860137255349, guid: cb612f8f1724d9e47836b6201dace393,
+        type: 3}
+      propertyPath: m_Name
+      value: ButtonTemplate
+      objectReference: {fileID: 0}
     - target: {fileID: 6997212861708782160, guid: cb612f8f1724d9e47836b6201dace393,
         type: 3}
       propertyPath: m_Name

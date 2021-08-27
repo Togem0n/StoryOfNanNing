@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Movement attributes initialization
+    // PlayerMovement
     public float speed;
     float horizontal;
     float vertical;
@@ -12,13 +12,18 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigidbody2d;
     Vector2 moveDirection = new Vector2(1, 0);
 
-    // Player inventory attibutes
+    // InventorySystem
     private Inventory inventory;
     [SerializeField] private UI_Inventory ui_Inventory;
     [SerializeField] private DragDrop dragDrop;
     bool ui_Inventory_status = false;
     private int numOfOwnItem = 0;
     private Item itemInUse;
+
+    //DialogueSystem
+    [SerializeField] private DialogueUI dialogueUI; 
+    public DialogueUI DialogueUI => dialogueUI; // Normally we use DialogueUI to call the showDialogue
+    public IIteractable Interactable { get; set; }
 
     void Start()
     {
@@ -31,13 +36,6 @@ public class PlayerController : MonoBehaviour
         ui_Inventory.gameObject.SetActive(false);
 
         itemInUse = new Item { itemType = Item.ItemType.None, amount = 1 };
-        /*ItemWorld.SpawnItemWorld(new Vector3(10, 18), new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(10, 24), new Item { itemType = Item.ItemType.ManaPotion, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(5, 24), new Item { itemType = Item.ItemType.Sword, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(5, 18), new Item { itemType = Item.ItemType.Sword, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(10, 21), new Item { itemType = Item.ItemType.Sword, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(5, 21), new Item { itemType = Item.ItemType.Sword, amount = 1 });*/
-
     }
 
     public Vector3 GetPosition()
@@ -86,9 +84,11 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (dialogueUI.dialogueIsOpen) return;
+
+        // PlayerMovement
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
@@ -104,7 +104,14 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Move Y", moveDirection.y);
         animator.SetFloat("Speed", move.magnitude);
 
+        // InventorySystem
         OpenMyBag();
+
+        // DialogueSystem
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Interactable?.Interact(this);
+        }
 
     }
 
